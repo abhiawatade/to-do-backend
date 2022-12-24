@@ -5,7 +5,7 @@ const router = express.Router();
 router.get("/todo", async (req, res) => {
   try {
     const todos = await Todo.findAll();
-    return res.status(200).json(todos).send("to do get request successfull");
+    return res.status(200).json(todos);
   } catch (error) {
     return res.status(404).send(error);
   }
@@ -14,7 +14,7 @@ router.get("/todo", async (req, res) => {
 router.get("/todo/:id", async (req, res) => {
   try {
     const todo = await Todo.findOne({ where: { id: req.params.id } });
-    return res.status(200).json(todo).send("to do get request successfull");
+    return res.status(200).json(todo);
 
     if (!todo) {
       return res.status(404).send("not found");
